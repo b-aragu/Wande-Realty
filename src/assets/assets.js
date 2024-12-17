@@ -1,12 +1,11 @@
 // Import all images
 import aboutBanner1 from './about-banner-1.png';
 import aboutBanner2 from './about-banner-2.jpg';
-import blog1 from './blog-1.png';
-import blog2 from './blog-2.jpg';
-import blog3 from './blog-3.jpg';
+import property6 from './property6.png';
+import property7 from './property7.jpg';
+import property8 from './property8.jpg';
 import favicon from './favicon.svg';
 import property5 from './property-5.png';
-import logoLight from './logo-light.png';
 import logo from './logo.png';
 import property1 from './property-1.jpg';
 import property2 from './property-2.jpg';
@@ -26,7 +25,7 @@ import rightArrow from './right-arrow.png';
 import leftArrow from './left-arrow.png';
 import star from './star.png'; // Like Icon
 import searchIcon from './searchIcon.png'; // Location Icon
-import location from './share.png'; // Share Icon
+import location from './location.png';
 import saleBadge from './sale-badge.png'; // Badge for sale
 import rentBadge from './rent-badge.png'; // Badge for rent
 import instagramIcon from './instagram.png';
@@ -51,13 +50,12 @@ export const assets = {
   rightArrow,
   menuIcon,
   close,
-  blog1,
-  blog2,
-  blog3,
+  property6,
+  property7,
+  property8,
   favicon,
   landing,
   property5,
-  logoLight,
   logo,
   property1,
   property2,
@@ -82,7 +80,7 @@ export const PropertiesData = [
     title: "Villa",
     price: "KES 120,000,000",
     location: "Karen, Nairobi",
-    image: property1,
+    image: [property1, property6, property8],
     status: "For Sale",
     badge: saleBadge,
     features: {
@@ -97,7 +95,7 @@ export const PropertiesData = [
     title: "Penthouse",
     price: "KES 75,000,000",
     location: "Westlands, Nairobi",
-    image: property2,
+    image: [property2, property7],
     status: "For Rent",
     badge: rentBadge,
     features: {
@@ -111,7 +109,7 @@ export const PropertiesData = [
     title: "Mansion",
     price: "KES 200,000,000",
     location: "Runda, Nairobi",
-    image: property3,
+    image: [property3],
     status: "For Sale",
     badge: saleBadge,
     features: {
@@ -125,7 +123,7 @@ export const PropertiesData = [
     title: "Townhouse",
     price: "KES 60,000,000",
     location: "Kileleshwa, Nairobi",
-    image: property4,
+    image: [property4],
     status: "For Rent",
     badge: rentBadge,
     features: {
@@ -139,7 +137,7 @@ export const PropertiesData = [
     title: "4bd Mansion",
     price: "KES 64,000,000",
     location: "Lavington, Nairobi",
-    image: property5,
+    image: [property5],
     status: "For Sale",
     badge: saleBadge,
     features: {

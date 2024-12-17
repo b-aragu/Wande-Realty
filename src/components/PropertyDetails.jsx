@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { assets, PropertiesData } from '../assets/assets';
-import { FaBed, FaBath, FaCar, FaHome } from 'react-icons/fa';
+import { FaBed, FaBath, FaCar, FaHome, FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 
 const PropertyDetails = () => {
+  const [touchStart, setTouchStart] = useState(0); // initialize touchStart state
+  const [touchEnd, setTouchEnd] = useState(0); // initialize touchEnd state
   const { id } = useParams(); // Get the property ID from the URL
   const property = PropertiesData[id]; // Ensure the ID matches the structure of your PropertiesData
   const navigate = useNavigate(); // Use navigate to go back or forward
@@ -11,12 +14,46 @@ const PropertyDetails = () => {
     return <p className="text-xl font-bold text-center text-gray-800">Property not found!</p>;
   }
 
-  // Destructuring the property data
   const { title, price, location, image, status, features, description } = property;
-  const { bedrooms, bathrooms, size, parking, yearBuilt } = features || {};
+  const { bedrooms, bathrooms, size, parking } = features || {};
 
+  // State to manage the current image in the carousel
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Carousel controls
+  const nextImage = () => {
+    if (currentImageIndex < image.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    }
+  };
+
+  const prevImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
+  };
+// Handle touch events
+const handleTouchStart = (e) => {
+  const touchStartPosition = e.touches[0].clientX;
+  setTouchStart(touchStartPosition);
+};
+
+const handleTouchMove = (e) => {
+  const touchMovePosition = e.touches[0].clientX;
+  setTouchEnd(touchMovePosition);
+};
+
+const handleTouchEnd = () => {
+  if (touchStart - touchEnd > 50) {
+    nextImage(); // Swipe Left (next image)
+  }
+  if (touchEnd - touchStart > 50) {
+    prevImage(); // Swipe Right (previous image)
+  }
+};
+  
   // Related properties sample data
-  const relatedProperties = PropertiesData.slice(0, 3);
+  const relatedProperties = PropertiesData;
 
   return (
     <div className="container px-8 py-16 mx-auto shadow-lg bg-gradient-to-r from-blue-50 via-blue-100 to-white rounded-xl">
@@ -34,12 +71,14 @@ const PropertyDetails = () => {
 
       {/* Property Title & Image */}
       <h1 className="mt-6 text-4xl font-extrabold text-center text-gray-900 md:text-5xl">{title}</h1>
-      <div className="flex flex-col justify-between mt-10 md:flex-row">
-        <div className="relative w-full md:w-1/2">
+
+      <div className="flex flex-col md:flex-row justify-between mt-10">
+        {/* Main Image */}
+        <div className="relative w-full md:w-1/2 h-96">
           <img
-            src={image}
+            src={image && image.length > 0 ? image[0] : undefined}
             alt={title}
-            className="object-cover w-full mb-6 transition-all transform shadow-xl h-96 rounded-xl hover:scale-105"
+            className="object-cover w-full h-full mb-6 transition-all transform shadow-xl rounded-xl hover:scale-105"
           />
           <div className="absolute px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg top-4 left-4">
             {price}
@@ -104,7 +143,7 @@ const PropertyDetails = () => {
             </div>
 
             {/* Agent Information Section */}
-            <AgentInformation agentName="Michael Wande" agentContact="0712678334" />
+            <AgentInformation agentName="Michael Wande" agentContact="+254712678334" />
           </div>
 
           {/* Related Properties Section */}
@@ -117,7 +156,7 @@ const PropertyDetails = () => {
                   className="relative p-4 transition-all transform bg-white shadow-md rounded-xl w-72 hover:scale-105 hover:shadow-2xl"
                 >
                   <img
-                    src={relatedProperty.image}
+                    src={relatedProperty.image[0]} // Assuming images are in an array for related properties
                     alt={relatedProperty.title}
                     className="object-cover w-full h-48 rounded-t-xl"
                   />
@@ -138,30 +177,93 @@ const PropertyDetails = () => {
           </div>
         </div>
       </div>
+      {/* Image Carousel Below the Main Image */}
+      <div className="mt-8">
+       <div className="relative w-full md:w-1/2 transform md:translate-y-[-140%]">
+       {/* Title and Description */}
+         <h3 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+         Explore More Views of This Property
+        </h3>
+        <p className="text-base text-gray-600 mb-10 text-center">
+        Browse through multiple images to get a closer look at the unique features of this property. </p>
+        {/* Image Carousel */}
+        {/* Carousel Arrows */}
+<div className="flex justify-end items-center space-x-6 mb-4 pr-4">
+  <button
+    onClick={prevImage}
+    className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
+    aria-label="Previous Image"
+  >
+    <img src={assets.leftArrow} alt="Previous" className="w-6 h-6" />
+  </button>
+  <button
+    onClick={nextImage}
+    className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
+    aria-label="Next Image"
+  >
+    <img src={assets.rightArrow} alt="Next" className="w-6 h-6" />
+  </button>
+</div>
+
+       <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg"
+       onTouchStart={handleTouchStart}
+       onTouchMove={handleTouchMove}
+       onTouchEnd={handleTouchEnd}>
+       <img
+        src={image[currentImageIndex]}
+        alt={title}
+        className="object-cover w-full h-full transition-all duration-300 transform hover:scale-105 mt-7"
+       />
+          {/* Image Counter */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm py-1 px-4 rounded-lg opacity-80">
+        {currentImageIndex + 1} / {image.length}
+      </div>
+          </div>
+          <div className="mt-6 text-center">
+      <h4 className="text-lg font-semibold text-blue-600">
+        Spacious Living with Stunning Views
+      </h4>
+      <p className="text-sm-700 text-gray-500 mt-2">
+        Each corner of this property has been thoughtfully designed to provide comfort, functionality, and elegance. Don’t miss the scenic views captured in these images.
+      </p>
     </div>
+         </div>
+        </div>
+
+      </div>
   );
 };
 
-// Separate AgentInformation Component
 const AgentInformation = ({ agentName, agentContact }) => {
+  const whatsappLink = `https://wa.me/${agentContact}`; 
+
   return (
-    <div className="p-6 mt-10 space-y-6 shadow-lg bg-gradient-to-r from-blue-50 via-blue-100 to-white rounded-xl">
-      <h3 className="text-xl font-semibold text-gray-800">Agent Information</h3>
-      <div className="flex items-center space-x-6">
-        {/* Agent Profile Image */}
+    <div className=" p-6 mt-10 space-y-6 shadow-lg bg-white border border-gray-200 rounded-xl 
+    hover:shadow-2xl hover:border-blue-500 hover:scale-[1.02] transition-all duration-300 
+    active:bg-blue-50 active:shadow-inner">
+      {/* Section Header */}
+      <h3 className="text-2xl font-semibold text-gray-800 text-center">
+        Meet Your Agent
+      </h3>
+      <p className="text-gray-600 text-center text-sm">
+        Reach out to {agentName} for more details about this property.
+      </p>
+
+      {/* Agent Profile */}
+      <div className="flex flex-col items-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-6">
+        {/* Profile Image */}
         <div className="relative">
           <img
             src={assets.agentIcon}
             alt="Agent Icon"
-            className="w-16 h-16 border-4 border-blue-500 rounded-full shadow-md"
+            className="w-20 h-20 border-4 border-blue-500 rounded-full shadow-md"
           />
-          {/* Online Status Badge */}
-          <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+          <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></div>
         </div>
 
         {/* Agent Details */}
-        <div>
-          <p className="text-lg font-medium text-gray-700">
+        <div className="text-center md:text-left">
+          <p className="text-lg font-medium text-gray-800">
             <strong>Name:</strong> {agentName}
           </p>
           <p className="text-lg text-gray-700">
@@ -171,25 +273,36 @@ const AgentInformation = ({ agentName, agentContact }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex space-x-4">
+      <div className="flex flex-wrap justify-center gap-4 mt-4">
+        {/* Call Button */}
         <button
           onClick={() => window.open(`tel:${agentContact}`)}
-          className="flex items-center px-6 py-2 text-sm font-semibold text-white transition-all transform bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 hover:scale-105"
+          className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700"
         >
-          <img src={assets.call} alt="Call Icon" className="w-5 h-5 mr-2" />
+          <FaPhone className="w-4 h-4 mr-2" />
           Call Agent
         </button>
 
+        {/* Email Button */}
         <button
           onClick={() =>
             window.open(
-              `mailto:${agentContact}?subject=Inquiry&body=Hi ${agentName}, I am interested in one of your properties.`
+              `mailto:wandemichael6@gmail.com?subject=Inquiry&body=Hi ${agentName}, I am interested in one of your properties.`
             )
           }
-          className="flex items-center px-6 py-2 text-sm font-semibold text-white transition-all transform bg-green-600 rounded-lg shadow-lg hover:bg-green-700 hover:scale-105"
+          className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700"
         >
-          <img src={assets.email} alt="Email Icon" className="w-5 h-5 mr-2" />
+          <FaEnvelope className="w-4 h-4 mr-2" />
           Email Agent
+        </button>
+
+        {/* WhatsApp Button */}
+        <button
+          onClick={() => window.open(whatsappLink, "_blank")}
+          className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600"
+        >
+          <FaWhatsapp className="w-4 h-4 mr-2" />
+          WhatsApp Agent
         </button>
       </div>
     </div>

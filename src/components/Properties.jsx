@@ -188,7 +188,7 @@ const Properties = () => {
             >
               <div className="relative p-6 bg-gray-100 rounded-lg shadow-md">
                 <img
-                  src={property.image}
+                  src={property.image[0]}
                   alt={property.title}
                   className="object-cover w-full h-64 mb-4 rounded-md shadow-sm"
                 />
