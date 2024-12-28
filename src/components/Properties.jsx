@@ -26,8 +26,11 @@ const Properties = () => {
   const [filteredProperties, setFilteredProperties] = useState(PropertiesData);
 
   // For swipe functionality
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const [touchEndY, setTouchEndY] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
+  const SWIPE_THRESHOLD = 50;
 
   // Handle screen resize for responsive card display
   useEffect(() => {
@@ -74,27 +77,40 @@ const Properties = () => {
 
   // Handle swipe start
   const handleTouchStart = (e) => {
-    const touchStartPosition = e.touches[0].clientX;
-    setTouchStart(touchStartPosition);
+    setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
+    setTouchEndX(null); // Reset end values
+    setTouchEndY(null);
   };
 
   // Handle swipe move
   const handleTouchMove = (e) => {
-    const touchMovePosition = e.touches[0].clientX;
-    setTouchEnd(touchMovePosition);
+    setTouchEndX(e.touches[0].clientX);
+    setTouchEndY(e.touches[0].clientY);
   };
 
   // Handle swipe end
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      nextProject(); // Swipe Left
+    if (touchEndX === null || touchEndY === null) return;
+
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = Math.abs(touchStartY - touchEndY); // Vertical movement
+
+    // Ensure significant horizontal movement and minimal vertical movement
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD && deltaY < SWIPE_THRESHOLD) {
+      if (deltaX > 0) {
+        nextProject(); // Swipe Left
+      } else {
+        prevProject(); // Swipe Right
+      }
     }
 
-    if (touchEnd - touchStart > 50) {
-      prevProject(); // Swipe Right
-    }
+    // Reset touch state
+    setTouchStartX(0);
+    setTouchEndX(null);
+    setTouchStartY(0);
+    setTouchEndY(null);
   };
-
   // Like/unlike properties
   const handleLike = (propertyTitle) => {
     setLikedProperties((prevLikes) => {
@@ -121,15 +137,15 @@ const Properties = () => {
 
   return (
     <motion.div
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       initial={{ opacity: 0, x: -200 }}
       transition={{ duration: 1 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       className="container w-full px-6 py-4 pt-20 mx-auto my-20 overflow-hidden md:px-20 lg:px-32"
       id="Properties"
-      onTouchStart={handleTouchStart} // Add touch event listeners
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
     >
       <h1 className="mb-4 text-2xl font-bold text-center sm:text-4xl">
         Featured{" "}

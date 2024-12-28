@@ -204,8 +204,8 @@ const PropertyDetails = () => {
         </div>
       </div>
       {/* Image Carousel Below the Main Image */}
-      <div className="mt-8">
-        <div className="relative w-full md:w-1/2 transform md:translate-y-[-140%]">
+      <div className="mt-10">
+        <div className="relative w-full md:w-1/2 transform md:translate-y-[-120%]">
           {/* Title and Description */}
           <h3 className="text-3xl font-bold text-gray-800 mb-4 text-center">
             Explore More Views of This Property
