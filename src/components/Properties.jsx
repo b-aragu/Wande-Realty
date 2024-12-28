@@ -1,25 +1,30 @@
-import { useState, useEffect } from 'react';
-import { assets, PropertiesData } from '../assets/assets';
-import { motion } from 'framer-motion';
-import { FaHeart, FaRegHeart, FaMapMarkerAlt, FaShareAlt } from 'react-icons/fa';
-import { 
-  FacebookShareButton, 
-  TwitterShareButton, 
-  WhatsappShareButton, 
-  FacebookIcon, 
-  XIcon, 
-  WhatsappIcon 
-} from 'react-share';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { assets, PropertiesData } from "../assets/assets";
+import { motion } from "framer-motion";
+import {
+  FaHeart,
+  FaRegHeart,
+  FaMapMarkerAlt,
+  FaShareAlt,
+} from "react-icons/fa";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  XIcon,
+  WhatsappIcon,
+} from "react-share";
+import { Link } from "react-router-dom";
 
 const Properties = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(1);
   const [likedProperties, setLikedProperties] = useState([]);
   const [shareOptionsVisibility, setShareOptionsVisibility] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredProperties, setFilteredProperties] = useState(PropertiesData);
-  
+
   // For swipe functionality
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -38,10 +43,10 @@ const Properties = () => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -111,7 +116,7 @@ const Properties = () => {
 
   // Redirect to Instagram
   const handleInstagramRedirect = () => {
-    window.open('https://www.instagram.com/wanderealty/', '_blank');
+    window.open("https://www.instagram.com/wanderealty/", "_blank");
   };
 
   return (
@@ -127,13 +132,14 @@ const Properties = () => {
       onTouchEnd={handleTouchEnd}
     >
       <h1 className="mb-4 text-2xl font-bold text-center sm:text-4xl">
-        Featured{' '}
+        Featured{" "}
         <span className="font-light underline underline-offset-4 decoration-1">
           Listings
         </span>
       </h1>
       <p className="max-w-md mx-auto mb-10 text-center text-gray-500">
-        Discover the perfect property for you with Wande Realty. Whether for rent or sale, we've got you covered.
+        Discover the perfect property for you with Wande Realty. Whether for
+        rent or sale, we've got you covered.
       </p>
 
       {/* Search Bar */}
@@ -146,7 +152,11 @@ const Properties = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full p-2 text-gray-700 bg-gray-200 rounded focus:outline-none"
           />
-          <img src={assets.searchIcon} alt="Search" className="cursor-pointer w-7" />
+          <img
+            src={assets.searchIcon}
+            alt="Search"
+            className="cursor-pointer w-7"
+          />
         </form>
         <div className="flex items-center">
           <button
@@ -171,7 +181,10 @@ const Properties = () => {
         <p className="text-center text-gray-500">No properties found.</p>
       ) : (
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className={`flex transition-transform duration-500 ease-in-out ${
+            filteredProperties.length > 0 ? "ml-14 md:ml-60" : ""
+          }
+    `}
           style={{
             transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`,
             width: `${filteredProperties.length * (100 / cardsToShow)}%`,
@@ -183,7 +196,7 @@ const Properties = () => {
               className="flex flex-col items-center flex-shrink-0"
               style={{
                 width: `${100 / cardsToShow}%`,
-                marginRight: '15px',
+                marginRight: "15px",
               }}
             >
               <div className="relative p-6 bg-gray-100 rounded-lg shadow-md">
@@ -196,7 +209,7 @@ const Properties = () => {
                   <div className="absolute top-4 left-4">
                     <img
                       src={property.badge}
-                      alt={property.status || 'Badge'}
+                      alt={property.status || "Badge"}
                       className="w-12 h-12"
                     />
                   </div>
@@ -265,9 +278,7 @@ const Properties = () => {
                       </motion.div>
                     )}
                   </div>
-                  <button
-                    className="px-4 py-2 text-sm text-white transition bg-blue-600 rounded hover:bg-blue-700"
-                  >
+                  <button className="px-4 py-2 text-sm text-white transition bg-blue-600 rounded hover:bg-blue-700">
                     <Link to={`/property/${index}`}>View Details</Link>
                   </button>
                 </div>

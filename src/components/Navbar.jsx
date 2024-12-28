@@ -1,32 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { assets } from '../assets/assets';
+import { useState, useEffect } from "react";
+import { assets } from "../assets/assets";
 
 const Navbar = ({ searchQuery, setSearchQuery }) => {
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  // Handle search input change
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 500); // Adjust the debounce delay as needed
 
-  // Handle search submit
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    if (searchQuery) {
-      console.log('Searching for:', searchQuery);
+    if (debouncedSearchQuery) {
+      console.log("Searching for:", debouncedSearchQuery);
     }
-    // Scroll to the Properties section
-    document.getElementById('Properties').scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById("Properties")
+      .scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     if (showMobileMenu) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
+    };
+  }, [showMobileMenu]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showMobileMenu) {
+        setShowMobileMenu(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [showMobileMenu]);
 
@@ -38,10 +57,21 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
 
         {/* Desktop Navbar Links */}
         <ul className="hidden text-white md:flex gap-7">
-          <a href="#Header" className="cursor-pointer hover:text-gray-400">Home</a>
-          <a href="#About" className="cursor-pointer hover:text-gray-400">About</a>
-          <a href="#Properties" className="cursor-pointer hover:text-gray-400">Properties</a>
-          <a href="#Testimonials" className="cursor-pointer hover:text-gray-400">Testimonials</a>
+          <a href="#Header" className="cursor-pointer hover:text-gray-400">
+            Home
+          </a>
+          <a href="#About" className="cursor-pointer hover:text-gray-400">
+            About
+          </a>
+          <a href="#Properties" className="cursor-pointer hover:text-gray-400">
+            Properties
+          </a>
+          <a
+            href="#Testimonials"
+            className="cursor-pointer hover:text-gray-400"
+          >
+            Testimonials
+          </a>
         </ul>
 
         {/* Desktop Search Bar */}
@@ -54,7 +84,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             placeholder="Search properties..."
             required
             value={searchQuery}
-            onChange={handleSearchChange}
+            onChange={(event) => setSearchQuery(event.target.value)}
             className="w-full p-2 text-white bg-transparent border-none"
           />
           <img
@@ -77,7 +107,9 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
       {/* Mobile Menu */}
       <div
         className={`${
-          showMobileMenu ? 'fixed w-full h-full bg-white z-20 transition-transform duration-300 transform' : 'hidden'
+          showMobileMenu
+            ? "fixed w-full h-full bg-white z-20 transition-transform duration-300 transform"
+            : "hidden"
         } top-0 left-0`}
       >
         <div className="flex justify-end p-6 cursor-pointer">
@@ -131,7 +163,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
               placeholder="Search properties..."
               required
               value={searchQuery}
-              onChange={handleSearchChange}
+              onChange={(event) => setSearchQuery(event.target.value)}
               className="w-full p-2 bg-transparent border-none rounded"
             />
             <img

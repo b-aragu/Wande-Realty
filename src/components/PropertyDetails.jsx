@@ -1,7 +1,15 @@
-import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { assets, PropertiesData } from '../assets/assets';
-import { FaBed, FaBath, FaCar, FaHome, FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { assets, PropertiesData } from "../assets/assets";
+import {
+  FaBed,
+  FaBath,
+  FaCar,
+  FaHome,
+  FaPhone,
+  FaWhatsapp,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const PropertyDetails = () => {
   const [touchStart, setTouchStart] = useState(0); // initialize touchStart state
@@ -11,10 +19,15 @@ const PropertyDetails = () => {
   const navigate = useNavigate(); // Use navigate to go back or forward
 
   if (!property) {
-    return <p className="text-xl font-bold text-center text-gray-800">Property not found!</p>;
+    return (
+      <p className="text-xl font-bold text-center text-gray-800">
+        Property not found!
+      </p>
+    );
   }
 
-  const { title, price, location, image, status, features, description } = property;
+  const { title, price, location, image, status, features, description } =
+    property;
   const { bedrooms, bathrooms, size, parking } = features || {};
 
   // State to manage the current image in the carousel
@@ -32,26 +45,20 @@ const PropertyDetails = () => {
       setCurrentImageIndex(currentImageIndex - 1);
     }
   };
-// Handle touch events
-const handleTouchStart = (e) => {
-  const touchStartPosition = e.touches[0].clientX;
-  setTouchStart(touchStartPosition);
-};
+  // Handle touch events
+  const isMobile = window.innerWidth <= 768; // Mobile check
+  const handleTouchStart = (e) =>
+    isMobile && setTouchStart(e.touches[0].clientX);
+  const handleTouchMove = (e) => isMobile && setTouchEnd(e.touches[0].clientX);
+  const handleTouchEnd = () => {
+    if (!isMobile) return; // Only handle touch on mobile
+    const difference = touchStart - touchEnd;
+    if (difference > 50) nextImage(); // Swipe Left
+    if (difference < -50) prevImage(); // Swipe Right
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
 
-const handleTouchMove = (e) => {
-  const touchMovePosition = e.touches[0].clientX;
-  setTouchEnd(touchMovePosition);
-};
-
-const handleTouchEnd = () => {
-  if (touchStart - touchEnd > 50) {
-    nextImage(); // Swipe Left (next image)
-  }
-  if (touchEnd - touchStart > 50) {
-    prevImage(); // Swipe Right (previous image)
-  }
-};
-  
   // Related properties sample data
   const relatedProperties = PropertiesData;
 
@@ -61,7 +68,7 @@ const handleTouchEnd = () => {
       <button
         onClick={() => {
           navigate(-1);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className="flex items-center px-6 py-2 mb-8 text-sm font-semibold text-white transition-all transform rounded-lg shadow-lg bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-black hover:scale-105"
       >
@@ -70,7 +77,9 @@ const handleTouchEnd = () => {
       </button>
 
       {/* Property Title & Image */}
-      <h1 className="mt-6 text-4xl font-extrabold text-center text-gray-900 md:text-5xl">{title}</h1>
+      <h1 className="mt-6 text-4xl font-extrabold text-center text-gray-900 md:text-5xl">
+        {title}
+      </h1>
 
       <div className="flex flex-col md:flex-row justify-between mt-10">
         {/* Main Image */}
@@ -107,7 +116,9 @@ const handleTouchEnd = () => {
 
             {/* Property Features Section */}
             <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-800">Property Features</h3>
+              <h3 className="text-xl font-semibold text-gray-800">
+                Property Features
+              </h3>
               <div className="grid grid-cols-2 gap-4 mt-8">
                 {bedrooms && (
                   <div className="flex items-center p-4 space-x-2 rounded-lg shadow-lg bg-blue-50">
@@ -130,25 +141,34 @@ const handleTouchEnd = () => {
                 {parking && (
                   <div className="flex items-center p-4 space-x-2 rounded-lg shadow-lg bg-blue-50">
                     <FaCar className="text-xl text-blue-500" />
-                    <span className="text-gray-700">{parking} Parking Spaces</span>
+                    <span className="text-gray-700">
+                      {parking} Parking Spaces
+                    </span>
                   </div>
                 )}
               </div>
               {description && (
                 <div className="p-6 mt-8 rounded-lg shadow-lg bg-gray-50">
-                  <h3 className="mb-4 text-xl font-semibold text-gray-800">Description</h3>
+                  <h3 className="mb-4 text-xl font-semibold text-gray-800">
+                    Description
+                  </h3>
                   <p className="text-gray-600">{description}</p>
                 </div>
               )}
             </div>
 
             {/* Agent Information Section */}
-            <AgentInformation agentName="Michael Wande" agentContact="+254712678334" />
+            <AgentInformation
+              agentName="Michael Wande"
+              agentContact="+254712678334"
+            />
           </div>
 
           {/* Related Properties Section */}
           <div className="mt-16">
-            <h3 className="mb-6 text-2xl font-semibold text-gray-900">Related Properties</h3>
+            <h3 className="mb-6 text-2xl font-semibold text-gray-900">
+              Related Properties
+            </h3>
             <div className="flex space-x-6 overflow-x-auto">
               {relatedProperties.map((relatedProperty, index) => (
                 <div
@@ -161,12 +181,18 @@ const handleTouchEnd = () => {
                     className="object-cover w-full h-48 rounded-t-xl"
                   />
                   <div className="p-4">
-                    <h4 className="text-xl font-semibold text-gray-800">{relatedProperty.title}</h4>
-                    <p className="text-sm text-gray-600">{relatedProperty.location}</p>
-                    <p className="mt-2 text-lg font-bold text-gray-900">{relatedProperty.price}</p>
+                    <h4 className="text-xl font-semibold text-gray-800">
+                      {relatedProperty.title}
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      {relatedProperty.location}
+                    </p>
+                    <p className="mt-2 text-lg font-bold text-gray-900">
+                      {relatedProperty.price}
+                    </p>
                     <button
                       className="px-4 py-2 mt-4 text-sm text-white transition-all transform bg-blue-600 rounded-lg hover:bg-blue-700 hover:scale-105"
-                      onClick={() => navigate(`/property/${relatedProperty.id}`)}
+                      onClick={() => navigate(`/property/${index}`)}
                     >
                       View Details
                     </button>
@@ -179,68 +205,75 @@ const handleTouchEnd = () => {
       </div>
       {/* Image Carousel Below the Main Image */}
       <div className="mt-8">
-       <div className="relative w-full md:w-1/2 transform md:translate-y-[-140%]">
-       {/* Title and Description */}
-         <h3 className="text-3xl font-bold text-gray-800 mb-4 text-center">
-         Explore More Views of This Property
-        </h3>
-        <p className="text-base text-gray-600 mb-10 text-center">
-        Browse through multiple images to get a closer look at the unique features of this property. </p>
-        {/* Image Carousel */}
-        {/* Carousel Arrows */}
-<div className="flex justify-end items-center space-x-6 mb-4 pr-4">
-  <button
-    onClick={prevImage}
-    className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
-    aria-label="Previous Image"
-  >
-    <img src={assets.leftArrow} alt="Previous" className="w-6 h-6" />
-  </button>
-  <button
-    onClick={nextImage}
-    className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
-    aria-label="Next Image"
-  >
-    <img src={assets.rightArrow} alt="Next" className="w-6 h-6" />
-  </button>
-</div>
+        <div className="relative w-full md:w-1/2 transform md:translate-y-[-140%]">
+          {/* Title and Description */}
+          <h3 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+            Explore More Views of This Property
+          </h3>
+          <p className="text-base text-gray-600 mb-10 text-center">
+            Browse through multiple images to get a closer look at the unique
+            features of this property.{" "}
+          </p>
+          {/* Image Carousel */}
+          {/* Carousel Arrows */}
+          <div className="flex justify-end items-center space-x-6 mb-4 pr-4">
+            <button
+              onClick={prevImage}
+              className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
+              aria-label="Previous Image"
+            >
+              <img src={assets.leftArrow} alt="Previous" className="w-6 h-6" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
+              aria-label="Next Image"
+            >
+              <img src={assets.rightArrow} alt="Next" className="w-6 h-6" />
+            </button>
+          </div>
 
-       <div className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg"
-       onTouchStart={handleTouchStart}
-       onTouchMove={handleTouchMove}
-       onTouchEnd={handleTouchEnd}>
-       <img
-        src={image[currentImageIndex]}
-        alt={title}
-        className="object-cover w-full h-full transition-all duration-300 transform hover:scale-105 mt-7"
-       />
-          {/* Image Counter */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm py-1 px-4 rounded-lg opacity-80">
-        {currentImageIndex + 1} / {image.length}
-      </div>
+          <div
+            className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <img
+              src={image[currentImageIndex]}
+              alt={title}
+              className="object-cover w-full h-full transition-all duration-300 transform hover:scale-105 mt-7"
+            />
+            {/* Image Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm py-1 px-4 rounded-lg opacity-80">
+              {currentImageIndex + 1} / {image.length}
+            </div>
           </div>
           <div className="mt-6 text-center">
-      <h4 className="text-lg font-semibold text-blue-600">
-        Spacious Living with Stunning Views
-      </h4>
-      <p className="text-sm-700 text-gray-500 mt-2">
-        Each corner of this property has been thoughtfully designed to provide comfort, functionality, and elegance. Don’t miss the scenic views captured in these images.
-      </p>
-    </div>
-         </div>
+            <h4 className="text-lg font-semibold text-blue-600">
+              Spacious Living with Stunning Views
+            </h4>
+            <p className="text-sm-700 text-gray-500 mt-2">
+              Each corner of this property has been thoughtfully designed to
+              provide comfort, functionality, and elegance. Don’t miss the
+              scenic views captured in these images.
+            </p>
+          </div>
         </div>
-
       </div>
+    </div>
   );
 };
 
 const AgentInformation = ({ agentName, agentContact }) => {
-  const whatsappLink = `https://wa.me/${agentContact}`; 
+  const whatsappLink = `https://wa.me/${agentContact}`;
 
   return (
-    <div className=" p-6 mt-10 space-y-6 shadow-lg bg-white border border-gray-200 rounded-xl 
+    <div
+      className=" p-6 mt-10 space-y-6 shadow-lg bg-white border border-gray-200 rounded-xl 
     hover:shadow-2xl hover:border-blue-500 hover:scale-[1.02] transition-all duration-300 
-    active:bg-blue-50 active:shadow-inner">
+    active:bg-blue-50 active:shadow-inner"
+    >
       {/* Section Header */}
       <h3 className="text-2xl font-semibold text-gray-800 text-center">
         Meet Your Agent

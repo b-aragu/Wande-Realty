@@ -1,39 +1,39 @@
 // Import all images
-import aboutBanner1 from './about-banner-1.png';
-import aboutBanner2 from './about-banner-2.jpg';
-import property6 from './property6.png';
-import property7 from './property7.jpg';
-import property8 from './property8.jpg';
-import favicon from './favicon.svg';
-import property5 from './property-5.png';
-import logo from './logo.png';
-import property1 from './property-1.jpg';
-import property2 from './property-2.jpg';
-import property3 from './property-3.jpg';
-import property4 from './property-4.png';
-import reactLogo from './react.svg';
-import service1 from './service-1.png';
-import service2 from './service-2.png';
-import service3 from './service-3.png';
-import profile1 from './profile1.png';
-import profile2 from './profile2.jpeg';
-import profile3 from './profile3.jpeg';
-import landing from './landing.jpg';
-import menuIcon from './menu.png';
-import close from './close.png';
-import rightArrow from './right-arrow.png';
-import leftArrow from './left-arrow.png';
-import star from './star.png'; // Like Icon
-import searchIcon from './searchIcon.png'; // Location Icon
-import location from './location.png';
-import saleBadge from './sale-badge.png'; // Badge for sale
-import rentBadge from './rent-badge.png'; // Badge for rent
-import instagramIcon from './instagram.png';
-import agentIcon from './agentIcon.jpeg';
-import money from './money.png';
-import goBack from './goBack.svg';
-import call from './call.svg';
-import email from './email.svg';
+import aboutBanner1 from "./about-banner-1.png";
+import aboutBanner2 from "./about-banner-2.jpg";
+import property6 from "./property6.png";
+import property7 from "./property7.jpg";
+import property8 from "./property8.jpg";
+import favicon from "./favicon.svg";
+import property5 from "./property-5.png";
+import logo from "./logo.png";
+import property1 from "./property-1.jpg";
+import property2 from "./property-2.jpg";
+import property3 from "./property-3.jpg";
+import property4 from "./property-4.png";
+import reactLogo from "./react.svg";
+import service1 from "./service-1.png";
+import service2 from "./service-2.png";
+import service3 from "./service-3.png";
+import profile1 from "./profile1.png";
+import profile2 from "./profile2.jpeg";
+import profile3 from "./profile3.jpeg";
+import landing from "./landing.jpg";
+import menuIcon from "./menu.png";
+import close from "./close.png";
+import rightArrow from "./right-arrow.png";
+import leftArrow from "./left-arrow.png";
+import star from "./star.png"; // Like Icon
+import searchIcon from "./searchIcon.png"; // Location Icon
+import location from "./location.png";
+import saleBadge from "./sale-badge.png"; // Badge for sale
+import rentBadge from "./rent-badge.png"; // Badge for rent
+import instagramIcon from "./instagram.png";
+import agentIcon from "./agentIcon.jpeg";
+import money from "./money.png";
+import goBack from "./goBack.svg";
+import call from "./call.svg";
+import email from "./email.svg";
 
 // Create an object to export
 export const assets = {
@@ -71,7 +71,7 @@ export const assets = {
   star,
   location,
   saleBadge,
-  rentBadge
+  rentBadge,
 };
 
 // Properties details
@@ -149,7 +149,6 @@ export const PropertiesData = [
   },
   // More properties...
 ];
-
 
 export const testimonialsData = [
   {
