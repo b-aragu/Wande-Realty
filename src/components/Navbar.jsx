@@ -66,6 +66,9 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
           <a href="#Properties" className="cursor-pointer hover:text-gray-400">
             Properties
           </a>
+          <a href="#Contact" className="cursor-pointer hover:text-gray-400">
+            Contact Us
+          </a>
           <a
             href="#Testimonials"
             className="cursor-pointer hover:text-gray-400"
@@ -144,6 +147,13 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
             className="inline-block px-6 py-2 rounded-full hover:bg-gray-100"
           >
             Properties
+          </a>
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#Contact"
+            className="inline-block px-6 py-2 rounded-full hover:bg-gray-100"
+          >
+            Contact Us
           </a>
           <a
             onClick={() => setShowMobileMenu(false)}

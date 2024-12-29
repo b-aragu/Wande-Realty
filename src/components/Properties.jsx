@@ -198,7 +198,7 @@ const Properties = () => {
       ) : (
         <div
           className={`flex transition-transform duration-500 ease-in-out ${
-            filteredProperties.length > 0 ? "ml-14 md:ml-60" : ""
+            filteredProperties.length > 0 ? "ml-2 md:ml-20" : ""
           }
     `}
           style={{
