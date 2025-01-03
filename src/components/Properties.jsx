@@ -42,7 +42,7 @@ const Properties = () => {
       } else if (width >= 768) {
         setCardsToShow(5);
       } else {
-        setCardsToShow(3.7); // Fixed: Mobile devices
+        setCardsToShow(2.58); // Fixed: Mobile devices
       }
     };
 
