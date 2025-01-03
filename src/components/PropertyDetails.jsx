@@ -234,7 +234,7 @@ const PropertyDetails = () => {
           </div>
 
           <div
-            className="relative w-full h-80 rounded-xl overflow-hidden shadow-lg"
+            className="relative w-full h-96 rounded-xl overflow-hidden shadow-lg"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
