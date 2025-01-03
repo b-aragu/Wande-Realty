@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 
 const Properties = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardsToShow, setCardsToShow] = useState(1);
   const [likedProperties, setLikedProperties] = useState([]);
   const [shareOptionsVisibility, setShareOptionsVisibility] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -33,21 +32,27 @@ const Properties = () => {
   const SWIPE_THRESHOLD = 50;
 
   // Handle screen resize for responsive card display
+  const [cardsToShow, setCardsToShow] = useState(3); // Default state
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width >= 1024) {
-        setCardsToShow(4);
+        setCardsToShow(5);
       } else if (width >= 768) {
-        setCardsToShow(2);
+        setCardsToShow(5);
       } else {
-        setCardsToShow(2);
+        setCardsToShow(3.7); // Fixed: Mobile devices
       }
     };
 
+    // Run on mount
     handleResize();
+
+    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
+    // Cleanup on unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -197,9 +202,7 @@ const Properties = () => {
         <p className="text-center text-gray-500">No properties found.</p>
       ) : (
         <div
-          className={`flex transition-transform duration-500 ease-in-out ${
-            filteredProperties.length > 0 ? "ml-14 md:ml-60" : ""
-          }
+          className={`flex transition-transform duration-500 ease-in-out
     `}
           style={{
             transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`,
@@ -212,10 +215,11 @@ const Properties = () => {
               className="flex flex-col items-center flex-shrink-0"
               style={{
                 width: `${100 / cardsToShow}%`,
-                marginRight: "15px",
+                marginRight: "50px",
+                maxWidth: "400px",
               }}
             >
-              <div className="relative p-6 bg-gray-100 rounded-lg shadow-md">
+              <div className="relative p-6 bg-gray-100 rounded-lg shadow-md mr-4">
                 <img
                   src={property.image[0]}
                   alt={property.title}
