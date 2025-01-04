@@ -23,42 +23,26 @@ const Properties = () => {
   const [shareOptionsVisibility, setShareOptionsVisibility] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProperties, setFilteredProperties] = useState(PropertiesData);
-
-  // For swipe functionality
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
-  const [touchEndY, setTouchEndY] = useState(0);
-  const [touchStartY, setTouchStartY] = useState(0);
-  const SWIPE_THRESHOLD = 50;
-
-  // Handle screen resize for responsive card display
-  const [cardsToShow, setCardsToShow] = useState(3); // Default state
+  const [cardsToShow, setCardsToShow] = useState(1); // Default for mobile
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       if (width >= 1024) {
-        setCardsToShow(5);
+        setCardsToShow(5); // Desktop
       } else if (width >= 768) {
-        setCardsToShow(5);
+        setCardsToShow(3); // Tablet
       } else {
-        setCardsToShow(2.58); // Fixed: Mobile devices
+        setCardsToShow(3); // Mobile
       }
     };
 
-    // Run on mount
     handleResize();
-
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Update filtered properties when search query changes
   useEffect(() => {
     const filtered = PropertiesData.filter(
       (property) =>
@@ -68,17 +52,77 @@ const Properties = () => {
     setFilteredProperties(filtered);
   }, [searchQuery]);
 
-  // Navigate to next property
   const nextProject = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredProperties.length);
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = filteredProperties.length - 1;
+      return prevIndex === maxIndex ? 0 : prevIndex + 1;
+    });
   };
 
-  // Navigate to previous property
   const prevProject = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? filteredProperties.length - 1 : prevIndex - 1
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = filteredProperties.length - 1;
+      return prevIndex === 0 ? maxIndex : prevIndex - 1;
+    });
+  };
+
+  const handleLike = (propertyTitle) => {
+    setLikedProperties((prevLikes) =>
+      prevLikes.includes(propertyTitle)
+        ? prevLikes.filter((title) => title !== propertyTitle)
+        : [...prevLikes, propertyTitle]
     );
   };
+
+  const toggleShareOptions = (propertyTitle) => {
+    setShareOptionsVisibility((prevVisibility) => ({
+      ...prevVisibility,
+      [propertyTitle]: !prevVisibility[propertyTitle],
+    }));
+  };
+
+  const getCardTransform = () => {
+    return `translateX(-${currentIndex * (100 / cardsToShow)}%)`;
+  };
+
+  const handleInstagramRedirect = (property) => {
+    const message = `Check out this property at Wande Realty: ${property.title} - ${property.location}. ${property.image[0]}`;
+    window.open(
+      `https://www.instagram.com/direct/new?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
+    );
+  };
+  const handleTwitterRedirect = (property) => {
+    const message = `Check out this property at Wande Realty: ${property.title} - ${property.location} ${property.image[0]}`;
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        message
+      )}&url=${encodeURIComponent(property.image[0])}`,
+      "_blank"
+    );
+  };
+  const handleFacebookRedirect = (property) => {
+    const message = `Check out this property at Wande Realty: ${property.title} - ${property.location} ${property.image[0]}`;
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        property.image[0]
+      )}&quote=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+  const handleWhatsappRedirect = (property) => {
+    const message = `Check out this property at Wande Realty: ${property.title} - ${property.location} ${property.image[0]}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
+  // For swipe functionality
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const [touchEndY, setTouchEndY] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
+  const SWIPE_THRESHOLD = 50;
 
   // Handle swipe start
   const handleTouchStart = (e) => {
@@ -116,36 +160,13 @@ const Properties = () => {
     setTouchStartY(0);
     setTouchEndY(null);
   };
-  // Like/unlike properties
-  const handleLike = (propertyTitle) => {
-    setLikedProperties((prevLikes) => {
-      if (prevLikes.includes(propertyTitle)) {
-        return prevLikes.filter((title) => title !== propertyTitle);
-      } else {
-        return [...prevLikes, propertyTitle];
-      }
-    });
-  };
-
-  // Toggle share options visibility
-  const toggleShareOptions = (propertyTitle) => {
-    setShareOptionsVisibility((prevVisibility) => ({
-      ...prevVisibility,
-      [propertyTitle]: !prevVisibility[propertyTitle],
-    }));
-  };
-
-  // Redirect to Instagram
-  const handleInstagramRedirect = () => {
-    window.open("https://www.instagram.com/wanderealty/", "_blank");
-  };
 
   return (
     <motion.div
+      initial={{ opacity: 0, x: -200 }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      initial={{ opacity: 0, x: -200 }}
       transition={{ duration: 1 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
@@ -202,10 +223,9 @@ const Properties = () => {
         <p className="text-center text-gray-500">No properties found.</p>
       ) : (
         <div
-          className={`flex transition-transform duration-500 ease-in-out
-    `}
+          className={`flex transition-transform duration-500 ease-in-out`}
           style={{
-            transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`,
+            transform: getCardTransform(),
             width: `${filteredProperties.length * (100 / cardsToShow)}%`,
           }}
         >
@@ -215,11 +235,11 @@ const Properties = () => {
               className="flex flex-col items-center flex-shrink-0"
               style={{
                 width: `${100 / cardsToShow}%`,
-                marginRight: "50px",
+                paddingRight: "20px",
                 maxWidth: "400px",
               }}
             >
-              <div className="relative p-6 bg-gray-100 rounded-lg shadow-md mr-4">
+              <div className="relative p-6 bg-gray-100 rounded-lg shadow-md">
                 <img
                   src={property.image[0]}
                   alt={property.title}
@@ -270,18 +290,21 @@ const Properties = () => {
                         <WhatsappShareButton
                           url={`#`}
                           title={`Check out this property at Wande Realty: ${property.title}`}
+                          onClick={() => handleWhatsappRedirect(property)}
                         >
                           <WhatsappIcon size={32} round />
                         </WhatsappShareButton>
                         <TwitterShareButton
                           url={`#`}
                           title={`Check out this property at Wande Realty: ${property.title}`}
+                          onClick={() => handleTwitterRedirect(property)}
                         >
                           <XIcon size={32} round />
                         </TwitterShareButton>
                         <FacebookShareButton
                           url={`#`}
                           title={`Check out this property at Wande Realty: ${property.title}`}
+                          onClick={() => handleFacebookRedirect(property)}
                         >
                           <FacebookIcon size={32} round />
                         </FacebookShareButton>
