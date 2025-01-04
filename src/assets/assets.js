@@ -89,10 +89,88 @@ import lavi2bddup7 from "./lavi2bddup7.webp";
 import lavi2bddup8 from "./lavi2bddup8.webp";
 import lavi2bddup9 from "./lavi2bddup9.webp";
 import lavi2bddup10 from "./lavi2bddup10.webp";
+import ronga4bdtownhouse from "./ronga4bdtownhouse.webp";
+import ronga4bdtownhouse1 from "./ronga4bdtownhouse1.webp";
+import ronga4bdtownhouse2 from "./ronga4bdtownhouse2.webp";
+import ronga4bdtownhouse3 from "./ronga4bdtownhouse3.webp";
+import ronga4bdtownhouse4 from "./ronga4bdtownhouse4.webp";
+import ronga4bdtownhouse5 from "./ronga4bdtownhouse5.webp";
+import ronga4bdtownhouse6 from "./ronga4bdtownhouse6.webp";
+import ronga4bdtownhouse7 from "./ronga4bdtownhouse7.webp";
+import ronga4bdtownhouse8 from "./ronga4bdtownhouse8.webp";
+import ronga4bdtownhouse9 from "./ronga4bdtownhouse9.webp";
+import ronga4bdtownhouse10 from "./ronga4bdtownhouse10.webp";
+import ronga4bdtownhouse11 from "./ronga4bdtownhouse11.webp";
+import ronga4bdtownhouse12 from "./ronga4bdtownhouse12.webp";
+import ronga4bdtownhouse13 from "./ronga4bdtownhouse13.webp";
+import ronga4bdtownhouse14 from "./ronga4bdtownhouse14.webp";
+import lavi5bdtownhouse from "./lavi5bdtownhouse.webp";
+import lavi5bdtownhouse1 from "./lavi5bdtownhouse1.webp";
+import lavi5bdtownhouse2 from "./lavi5bdtownhouse2.webp";
+import lavi5bdtownhouse3 from "./lavi5bdtownhouse3.webp";
+import lavi5bdtownhouse4 from "./lavi5bdtownhouse4.webp";
+import lavi5bdtownhouse5 from "./lavi5bdtownhouse5.webp";
+import lavi5bdtownhouse6 from "./lavi5bdtownhouse6.webp";
+import lavi5bdtownhouse7 from "./lavi5bdtownhouse7.webp";
+import lavi5bdtownhouse8 from "./lavi5bdtownhouse8.webp";
+import lavi5bdtownhouse9 from "./lavi5bdtownhouse9.webp";
+import lavi5bdtownhouse10 from "./lavi5bdtownhouse10.webp";
+import lavi5bdtownhouse11 from "./lavi5bdtownhouse11.webp";
+import lavi5bdtownhouse12 from "./lavi5bdtownhouse12.webp";
+import lavi5bdtownhouse13 from "./lavi5bdtownhouse13.webp";
+import lavi4bdtownhouse from "./lavi4bdtownhouse.webp";
+import lavi4bdtownhouse1 from "./lavi4bdtownhouse1.webp";
+import lavi4bdtownhouse2 from "./lavi4bdtownhouse2.webp";
+import lavi4bdtownhouse3 from "./lavi4bdtownhouse3.webp";
+import lavi4bdtownhouse4 from "./lavi4bdtownhouse4.webp";
+import lavi4bdtownhouse5 from "./lavi4bdtownhouse5.webp";
+import lavi4bdtownhouse6 from "./lavi4bdtownhouse6.webp";
+import lavi4bdtownhouse7 from "./lavi4bdtownhouse7.webp";
+import lavi4bdtownhouse8 from "./lavi4bdtownhouse8.webp";
+import lavi4bdtownhouse9 from "./lavi4bdtownhouse9.webp";
 
 // Create an object to export
 export const assets = {
   aboutBanner1,
+  lavi4bdtownhouse,
+  lavi4bdtownhouse1,
+  lavi4bdtownhouse2,
+  lavi4bdtownhouse3,
+  lavi4bdtownhouse4,
+  lavi4bdtownhouse5,
+  lavi4bdtownhouse6,
+  lavi4bdtownhouse7,
+  lavi4bdtownhouse8,
+  lavi4bdtownhouse9,
+  lavi5bdtownhouse,
+  lavi5bdtownhouse1,
+  lavi5bdtownhouse2,
+  lavi5bdtownhouse3,
+  lavi5bdtownhouse4,
+  lavi5bdtownhouse5,
+  lavi5bdtownhouse6,
+  lavi5bdtownhouse7,
+  lavi5bdtownhouse8,
+  lavi5bdtownhouse9,
+  lavi5bdtownhouse10,
+  lavi5bdtownhouse11,
+  lavi5bdtownhouse12,
+  lavi5bdtownhouse13,
+  ronga4bdtownhouse,
+  ronga4bdtownhouse1,
+  ronga4bdtownhouse2,
+  ronga4bdtownhouse3,
+  ronga4bdtownhouse4,
+  ronga4bdtownhouse5,
+  ronga4bdtownhouse6,
+  ronga4bdtownhouse7,
+  ronga4bdtownhouse8,
+  ronga4bdtownhouse9,
+  ronga4bdtownhouse10,
+  ronga4bdtownhouse11,
+  ronga4bdtownhouse12,
+  ronga4bdtownhouse13,
+  ronga4bdtownhouse14,
   lavi2bddup,
   lavi2bddup1,
   lavi2bddup2,
@@ -214,35 +292,145 @@ export const PropertiesData = [
     paymentMethod: "Cash and Mortgage",
     amenities: ["Swimming pool", "24/7 Security"],
   },
+  {
+    title: "Rongai 4 Bedroom Townhouses for Sale",
+    price: "KES 20.5M (House A), KES 19.5M (House B)",
+    location: "Ongata Rongai, Nairobi",
+    image: [
+      ronga4bdtownhouse,
+      ronga4bdtownhouse1,
+      ronga4bdtownhouse2,
+      ronga4bdtownhouse3,
+      ronga4bdtownhouse4,
+      ronga4bdtownhouse5,
+      ronga4bdtownhouse6,
+      ronga4bdtownhouse7,
+      ronga4bdtownhouse8,
+      ronga4bdtownhouse9,
+      ronga4bdtownhouse10,
+      ronga4bdtownhouse11,
+      ronga4bdtownhouse12,
+      ronga4bdtownhouse13,
+      ronga4bdtownhouse14,
+    ],
+    status: "For Sale",
+    badge: saleBadge,
+    features: {
+      bedrooms: 4,
+      bathrooms: 4,
+      size: "200 sqm (Type A), 199 sqm (Type B)",
+      parking: "3 spaces",
+    },
+    availability: "Ready for Occupation",
+    paymentMethod: "Cash and Mortgage",
+    houseTypes: {
+      houseTypeA: {
+        priceCash: "KES 20.5M",
+        priceInstallments:
+          "KES 20.5M (20% down payment, Complete the rest in 12 months)",
+        priceMortgage: "KES 21M",
+        size: "200 sqm",
+      },
+      houseTypeB: {
+        priceCash: "KES 19.5M",
+        priceInstallments:
+          "KES 20M (20% down payment, Complete the rest in 12 months)",
+        priceMortgage: "KES 21M",
+        size: "199 sqm",
+      },
+    },
+    amenities: [
+      "Swimming gym",
+      "Club house",
+      "Gym",
+      "Play area",
+      "Pets allowed",
+      "Extra parking slots (30)",
+      "Borehole (330m deep)",
+      "2 Storage tanks (30,000 liters)",
+      "Sunken and Elevated",
+      "Generator",
+    ],
+  },
 
   {
-    title: "Villa",
-    price: "KES 120,000,000",
-    location: "Karen, Nairobi",
-    image: [property1, property6, property8],
+    title: "Lavington Luxurious 5 Bedroom Townhouse for Sale",
+    price: "KES 1.3M USD",
+    location: "Lavington, Nairobi",
+    image: [
+      lavi5bdtownhouse,
+      lavi5bdtownhouse1,
+      lavi5bdtownhouse2,
+      lavi5bdtownhouse3,
+      lavi5bdtownhouse4,
+      lavi5bdtownhouse5,
+      lavi5bdtownhouse6,
+      lavi5bdtownhouse7,
+      lavi5bdtownhouse8,
+      lavi5bdtownhouse9,
+      lavi5bdtownhouse10,
+      lavi5bdtownhouse11,
+      lavi5bdtownhouse12,
+      lavi5bdtownhouse13,
+    ],
     status: "For Sale",
     badge: saleBadge,
     features: {
       bedrooms: 5,
-      bathrooms: 4,
-      size: "5000 sqft",
-      parking: "2 spaces",
-      agentContact: "Michael Wande, 0712678334",
+      bathrooms: 5,
+      size: "500 sqm",
+      parking: "spaces available",
     },
+    availability: "Ready for Occupation",
+    paymentMethod: "Cash and Mortgage",
+    amenities: [
+      "All rooms en-suite",
+      "Private Swimming pool",
+      "Private Gym",
+      "Lift",
+      "Garden",
+      "Theatre room",
+      "Garden",
+    ],
   },
   {
-    title: "Penthouse",
-    price: "KES 75,000,000",
-    location: "Westlands, Nairobi",
-    image: [property2, property7],
-    status: "For Rent",
-    badge: rentBadge,
+    title: "Lavington 4 Bedroom Townhouses with DSQ for Sale",
+    price: "KES 78M",
+    location: "Lavington, Nairobi",
+    image: [
+      lavi4bdtownhouse,
+      lavi4bdtownhouse1,
+      lavi4bdtownhouse2,
+      lavi4bdtownhouse3,
+      lavi4bdtownhouse4,
+      lavi4bdtownhouse5,
+      lavi4bdtownhouse6,
+      lavi4bdtownhouse7,
+      lavi4bdtownhouse8,
+    ],
+    status: "For Sale",
+    badge: saleBadge,
     features: {
-      bedrooms: 3,
-      bathrooms: 2,
-      size: "3000 sqft",
-      parking: "1 space",
+      bedrooms: 4,
+      bathrooms: 4, // Assuming bathrooms are also 4 for this property
+      size: "5000 sqft", // Size in square feet
+      parking: "3 ",
     },
+    availability: "Ready for Occupation (Completion by End of December 2024)",
+    paymentMethod: "Cash and Mortgage",
+    amenities: [
+      "4 bedrooms (all ensuite) plus family room",
+      "5000 sqft",
+      "Intercom",
+      "CCTV & security fencing",
+      "Full backup generator",
+      "Solar water & reserve",
+      "Only 10 units in the compound",
+      "Front garden",
+      "3 parking spaces",
+      "Fully fitted appliances from Beko",
+      "European Beko fittings",
+    ],
   },
   {
     title: "Mansion",
