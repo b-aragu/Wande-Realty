@@ -15,7 +15,9 @@ import PropTypes from "prop-types";
 const PropertyDetails = () => {
   const [touchStart, setTouchStart] = useState(0); // initialize touchStart state
   const [touchEnd, setTouchEnd] = useState(0); // initialize touchEnd state
+  const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const { id } = useParams(); // Get the property ID from the URL
   const property = PropertiesData[id]; // Ensure the ID matches the structure of your PropertiesData
   const navigate = useNavigate(); // Use navigate to go back or forward
@@ -29,9 +31,32 @@ const PropertyDetails = () => {
     );
   }
 
-  const { title, price, location, image, status, features, description } =
-    property;
+  const {
+    title,
+    price,
+    location,
+    image,
+    status,
+    features,
+    description,
+    readyForOccupation,
+    paymentMethod,
+    amenities,
+  } = property;
   const { bedrooms, bathrooms, size, parking } = features || {};
+  // Function to open the modal and disable scrolling
+  const openModal = () => {
+    setIsOpen(true);
+    // Disable scrolling on the body when the modal is open
+    document.body.style.overflow = "hidden";
+  };
+
+  // Function to close the modal and restore scrolling
+  const closeModal = () => {
+    setIsOpen(false);
+    // Enable scrolling on the body when the modal is closed
+    document.body.style.overflow = "";
+  };
 
   // State to manage the current image in the carousel
 
@@ -163,6 +188,60 @@ const PropertyDetails = () => {
                 </div>
               )}
             </div>
+            <button
+              onClick={openModal}
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+            >
+              View More Property Details
+            </button>
+
+            {/* Modal */}
+            {isOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <div className="bg-white p-6 rounded-lg w-96 relative">
+                  {/* Close button */}
+                  <button
+                    onClick={closeModal}
+                    className="absolute top-2 right-2 text-gray-500 text-2xl"
+                  >
+                    &times;
+                  </button>
+
+                  <h2 className="text-xl font-semibold mb-4">
+                    Property Details
+                  </h2>
+
+                  {/* Ready for Occupation */}
+                  {readyForOccupation && (
+                    <p className="mb-2">
+                      <strong>Ready for Occupation:</strong>{" "}
+                      {readyForOccupation ? "Yes" : "No"}
+                    </p>
+                  )}
+
+                  {/* Payment Method */}
+                  {paymentMethod && (
+                    <p className="mb-2">
+                      <strong>Payment Method:</strong> {paymentMethod}
+                    </p>
+                  )}
+
+                  {/* Amenities */}
+                  {amenities && amenities.length > 0 && (
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">Amenities:</h3>
+                      <ul className="list-disc pl-5">
+                        {amenities.map((amenity, index) => (
+                          <li key={index} className="text-gray-700">
+                            {amenity}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Agent Information Section */}
             <AgentInformation
@@ -176,7 +255,7 @@ const PropertyDetails = () => {
             <h3 className="mb-6 text-2xl font-semibold text-gray-900">
               Related Properties
             </h3>
-            <div className="flex space-x-6 overflow-x-auto overflow-y- hidden">
+            <div className="flex space-x-6 overflow-x-auto overflow-y-hidden">
               {relatedProperties.map((relatedProperty, index) => (
                 <div
                   key={index}
@@ -353,9 +432,9 @@ const AgentInformation = ({ agentName, agentContact }) => {
     </div>
   );
 };
-
 AgentInformation.propTypes = {
   agentName: PropTypes.string.isRequired,
   agentContact: PropTypes.string.isRequired,
 };
+
 export default PropertyDetails;
