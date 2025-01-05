@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { assets } from "../assets/assets";
+import PropTypes from "prop-types";
 
 const Navbar = ({ searchQuery, setSearchQuery }) => {
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
@@ -187,6 +188,11 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
       </div>
     </div>
   );
+};
+
+Navbar.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
 };
 
 export default Navbar;

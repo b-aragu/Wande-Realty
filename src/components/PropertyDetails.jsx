@@ -10,10 +10,12 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from "react-icons/fa";
+import PropTypes from "prop-types";
 
 const PropertyDetails = () => {
   const [touchStart, setTouchStart] = useState(0); // initialize touchStart state
   const [touchEnd, setTouchEnd] = useState(0); // initialize touchEnd state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { id } = useParams(); // Get the property ID from the URL
   const property = PropertiesData[id]; // Ensure the ID matches the structure of your PropertiesData
   const navigate = useNavigate(); // Use navigate to go back or forward
@@ -32,7 +34,6 @@ const PropertyDetails = () => {
   const { bedrooms, bathrooms, size, parking } = features || {};
 
   // State to manage the current image in the carousel
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Carousel controls
   const nextImage = () => {
@@ -175,7 +176,7 @@ const PropertyDetails = () => {
             <h3 className="mb-6 text-2xl font-semibold text-gray-900">
               Related Properties
             </h3>
-            <div className="flex space-x-6 overflow-x-auto overflow-y-hidden">
+            <div className="flex space-x-6 overflow-x-auto overflow-y- hidden">
               {relatedProperties.map((relatedProperty, index) => (
                 <div
                   key={index}
@@ -353,4 +354,8 @@ const AgentInformation = ({ agentName, agentContact }) => {
   );
 };
 
+AgentInformation.propTypes = {
+  agentName: PropTypes.string.isRequired,
+  agentContact: PropTypes.string.isRequired,
+};
 export default PropertyDetails;

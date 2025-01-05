@@ -355,7 +355,7 @@ export const PropertiesData = [
 
   {
     title: "Lavington Luxurious 5 Bedroom Townhouse for Sale",
-    price: "KES 1.3M USD",
+    price: "1.3M USD",
     location: "Lavington, Nairobi",
     image: [
       lavi5bdtownhouse,
