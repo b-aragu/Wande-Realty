@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { assets, PropertiesData } from "../assets/assets";
 import {
@@ -17,6 +17,7 @@ const PropertyDetails = () => {
   const { id } = useParams(); // Get the property ID from the URL
   const property = PropertiesData[id]; // Ensure the ID matches the structure of your PropertiesData
   const navigate = useNavigate(); // Use navigate to go back or forward
+  const titleRef = useRef(null);
 
   if (!property) {
     return (
@@ -61,6 +62,9 @@ const PropertyDetails = () => {
 
   // Related properties sample data
   const relatedProperties = PropertiesData;
+  const scrollToTitle = () => {
+    titleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="container px-8 py-16 mx-auto shadow-lg bg-gradient-to-r from-blue-50 via-blue-100 to-white rounded-xl">
@@ -75,12 +79,14 @@ const PropertyDetails = () => {
         <img src={assets.goBack} alt="Go Back Icon" className="w-5 h-5 mr-2" />
         Go Back
       </button>
-
       {/* Property Title & Image */}
-      <h1 className="mt-6 text-4xl font-extrabold text-center text-gray-900 md:text-5xl">
+
+      <h1
+        ref={titleRef}
+        className="mt-6 text-4xl font-extrabold text-center text-gray-900 md:text-5xl"
+      >
         {title}
       </h1>
-
       <div className="flex flex-col md:flex-row justify-between mt-10">
         {/* Main Image */}
         <div className="relative w-full md:w-1/2 h-96">
@@ -169,7 +175,7 @@ const PropertyDetails = () => {
             <h3 className="mb-6 text-2xl font-semibold text-gray-900">
               Related Properties
             </h3>
-            <div className="flex space-x-6 overflow-x-auto">
+            <div className="flex space-x-6 overflow-x-auto overflow-y-hidden">
               {relatedProperties.map((relatedProperty, index) => (
                 <div
                   key={index}
@@ -192,7 +198,12 @@ const PropertyDetails = () => {
                     </p>
                     <button
                       className="px-4 py-2 mt-4 text-sm text-white transition-all transform bg-blue-600 rounded-lg hover:bg-blue-700 hover:scale-105"
-                      onClick={() => navigate(`/property/${index}`)}
+                      onClick={() => {
+                        navigate(`/property/${index}`);
+                        setTimeout(() => {
+                          scrollToTitle();
+                        }, 300);
+                      }}
                     >
                       View Details
                     </button>
