@@ -1,6 +1,5 @@
-import React from 'react';
-import Navbar from './Navbar';
-import { motion } from 'framer-motion';
+import Navbar from "./Navbar";
+import { motion } from "framer-motion";
 
 const Header = () => {
   return (
@@ -8,6 +7,7 @@ const Header = () => {
       className="flex items-center w-full min-h-screen mb-4 overflow-hidden bg-center bg-cover"
       style={{ backgroundImage: "url('/landing.jpg')" }}
       id="Header"
+      alt="Real estate in Nairobi, Kenya with Wande Realty"
     >
       {/* Navbar */}
       <Navbar />
@@ -27,8 +27,9 @@ const Header = () => {
 
         {/* Subheading */}
         <p className="max-w-2xl mx-auto mt-6 text-lg">
-          Discover premium properties, rental homes, and prime land across Nairobi and beyond with Wande Realty – 
-          connecting you to the perfect place to call home.
+          Discover premium properties, rental homes, and prime land across
+          Nairobi and beyond with Wande Realty – connecting you to the perfect
+          place to call home.
         </p>
 
         {/* Call-to-Actions */}
@@ -36,12 +37,14 @@ const Header = () => {
           <a
             href="#Properties"
             className="px-8 py-3 transition border border-white rounded hover:bg-gray-400 hover:text-white-500"
+            aria-label="Browse our real estate properties in Nairobi and Kenya"
           >
             Browse Properties
           </a>
           <a
             href="#Contact"
             className="px-8 py-3 transition bg-blue-500 rounded hover:bg-blue-600"
+            aria-label="Contact Wande Realty for your real estate needs"
           >
             Contact Us
           </a>
