@@ -18,25 +18,67 @@
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
       {
-        "@context": "http://schema.org",
+        "@context": "https://schema.org",
         "@type": "RealEstateAgent",
         "name": "Wande Realty",
         "url": "https://wanderealty.com",
-        "logo": "https://wanderealty.com/logo.png",
+        "logo": "https://wanderealty.com/favicon.svg",
         "description": "Wande Realty specializes in premium real estate, rental homes, and prime land across Nairobi and Kenya.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Kilimani",
+          "streetAddress": "Kilimani, near Yaya Center",
           "addressLocality": "Nairobi",
-          "addressCountry": "Kenya"
+          "addressRegion": "Nairobi County",
+          "postalCode": "00100",
+          "addressCountry": "KE"
         },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+254712678334",
-          "contactType": "customer service",
-          "areaServed": "KE",
-          "availableLanguage": "English"
-        }
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+254712678334",
+            "contactType": "Customer Service",
+            "areaServed": "KE",
+            "availableLanguage": ["English", "Swahili"]
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -1.2921,
+          "longitude": 36.8219
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "08:00",
+            "closes": "19:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/wande_realty/",
+          "https://www.facebook.com/people/Wande-Realty/61556190338691/",
+          "https://www.tiktok.com/@wanderealty",
+          "https://www.linkedin.com/in/wande_realty",
+          "https://twitter.com/Wande_Realty"
+        ],
+        "serviceArea": [
+          {
+            "@type": "Place",
+            "name": "Nairobi"
+          },
+          {
+            "@type": "Place",
+            "name": "Kenya"
+          }
+        ]
       }
     </script>
   </head>
