@@ -1,6 +1,5 @@
-import React from 'react';
-import { assets } from '../assets/assets';
-import { motion } from 'framer-motion';
+import { assets } from "../assets/assets";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
@@ -14,10 +13,14 @@ const About = () => {
     >
       {/* Title Section */}
       <h1 className="text-3xl font-bold text-center text-gray-800 sm:text-5xl">
-        About <span className="underline underline-offset-4 decoration-1">Wande Realty</span>
+        About{" "}
+        <span className="underline underline-offset-4 decoration-1">
+          Wande Realty
+        </span>
       </h1>
       <p className="max-w-2xl mt-4 mb-12 text-center text-gray-600">
-        We specialize in connecting you with the right property—whether you're buying, renting, or selling, we make real estate easy and accessible.
+        We specialize in connecting you with the right property—whether you're
+        buying, renting, or selling, we make real estate easy and accessible.
       </p>
 
       {/* Services Section */}
@@ -31,7 +34,8 @@ const About = () => {
           />
           <h3 className="text-xl font-semibold text-gray-800">Buy a Home</h3>
           <p className="mt-4 text-gray-600">
-            Discover thousands of homes for sale tailored to match your lifestyle and dreams.
+            Discover thousands of homes for sale tailored to match your
+            lifestyle and dreams.
           </p>
           <a
             href="#Properties"
@@ -53,7 +57,8 @@ const About = () => {
           />
           <h3 className="text-xl font-semibold text-gray-800">Rent a Home</h3>
           <p className="mt-4 text-gray-600">
-            Access the best rental options in Kenya. Let us find your next home with ease.
+            Access the best rental options in Kenya. Let us find your next home
+            with ease.
           </p>
           <a
             href="#Properties"
@@ -70,18 +75,24 @@ const About = () => {
         <div className="relative flex flex-col items-center p-6 text-center transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl group">
           <img
             src={assets.service3}
-            alt="Sell a Home"
+            alt="Sell or Rent Your Home with Wande Realty"
             className="w-20 h-20 mb-4 rounded-full"
           />
-          <h3 className="text-xl font-semibold text-gray-800">Sell a Home</h3>
+          <h3 className="text-xl font-semibold text-gray-800">
+            Sell or Rent Your Home
+          </h3>
           <p className="mt-4 text-gray-600">
-            Ready to sell? Let us connect you with the right buyers and ensure a smooth process.
+            Looking to sell or rent your property in Nairobi or other parts of
+            Kenya? At Wande Realty, we ensure your home gets maximum visibility
+            with the right audience, delivering a seamless experience from
+            listing to closing.
           </p>
           <a
-            href="#Properties"
+            href="#Contact"
             className="flex items-center mt-4 space-x-1 text-blue-600 group-hover:underline"
+            aria-label="Contact Wande Realty to sell or rent your home"
           >
-            <span>Find a Home</span>
+            <span>Get Started</span>
             <span>→</span>
           </a>
           {/* Hover Line */}
