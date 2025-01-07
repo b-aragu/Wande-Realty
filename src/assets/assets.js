@@ -34,6 +34,15 @@ import money from "./money.png";
 import goBack from "./goBack.svg";
 import call from "./call.svg";
 import email from "./email.svg";
+import westie23bd from "./westie23bed.webp";
+import westie23bd2 from "./westie23bed2.webp";
+import westie23bd3 from "./westie23bed3.webp";
+import westie23bd4 from "./westie23bed4.webp";
+import westie23bd5 from "./westie23bed5.webp";
+import westie23bd6 from "./westie23bed6.webp";
+import westie23bd7 from "./westie23bed7.webp";
+import westie23bd8 from "./westie23bed8.webp";
+import westie23bd9 from "./westie23bed9.webp";
 import kilimani2b from "./kilimani2bdsale.webp";
 import kilimani2b1 from "./kilimani2bdsale1.webp";
 import kilimani2b2 from "./kilimani2bdsale2.webp";
@@ -128,10 +137,25 @@ import lavi4bdtownhouse6 from "./lavi4bdtownhouse6.webp";
 import lavi4bdtownhouse7 from "./lavi4bdtownhouse7.webp";
 import lavi4bdtownhouse8 from "./lavi4bdtownhouse8.webp";
 import lavi4bdtownhouse9 from "./lavi4bdtownhouse9.webp";
+import kilimani4bddsq from "./kilimani4bddsqrent.webp";
+import kilimani4bddsq1 from "./kilimani4bddsqrent1.webp";
+import kilimani4bddsq2 from "./kilimani4bddsqrent2.webp";
+import kilimani4bddsq3 from "./kilimani4bddsqrent3.webp";
+import kilimani4bddsq4 from "./kilimani4bddsqrent4.webp";
+import kilimani4bddsq5 from "./kilimani4bddsqrent5.webp";
+import kilimani4bddsq6 from "./kilimani4bddsqrent6.webp";
+import kilimani4bddsq7 from "./kilimani4bddsqrent7.webp";
 
 // Create an object to export
 export const assets = {
   aboutBanner1,
+  kilimani4bddsq,
+  kilimani4bddsq2,
+  kilimani4bddsq3,
+  kilimani4bddsq4,
+  kilimani4bddsq5,
+  kilimani4bddsq6,
+  kilimani4bddsq7,
   lavi4bdtownhouse,
   lavi4bdtownhouse1,
   lavi4bdtownhouse2,
@@ -182,6 +206,15 @@ export const assets = {
   lavi2bddup8,
   lavi2bddup9,
   lavi2bddup10,
+  westie23bd,
+  westie23bd2,
+  westie23bd3,
+  westie23bd4,
+  westie23bd5,
+  westie23bd6,
+  westie23bd7,
+  westie23bd8,
+  westie23bd9,
   rongaitownhouse,
   rongaitownhouse1,
   rongaitownhouse2,
@@ -433,18 +466,50 @@ export const PropertiesData = [
     ],
   },
   {
-    title: "Mansion",
-    price: "KES 200,000,000",
-    location: "Runda, Nairobi",
-    image: [property3],
-    status: "For Sale",
-    badge: saleBadge,
+    title: "Kilimani 4 Bedroom Townhouse plus DSQ for Rent",
+    price: "KES 180K per month",
+    location: "Kilimani, Nairobi",
+    image: [
+      kilimani4bddsq,
+      kilimani4bddsq1,
+      kilimani4bddsq2,
+      kilimani4bddsq3,
+      kilimani4bddsq4,
+      kilimani4bddsq5,
+      kilimani4bddsq6,
+      kilimani4bddsq7,
+    ],
+    status: "For Rent",
+    badge: rentBadge,
     features: {
-      bedrooms: 7,
-      bathrooms: 6,
-      size: "8000 sqft",
-      parking: "5 spaces",
+      bedrooms: 4,
+      bathrooms: 4,
+      dsq: 1,
+      size: "N/A",
+      parking: "2 spaces",
+      masterEnSuite: true,
+      gatedCommunity: true,
+      backyard: true,
     },
+    availability: "Available for Immediate Rent",
+    paymentMethod: "Monthly Rent",
+    houseTypes: {
+      townhouse: {
+        pricePerMonth: "KES 180K",
+        deposit: "KES 180K (1-month deposit)",
+        leaseTerms: "Minimum 1-year lease",
+      },
+    },
+    amenities: [
+      "Gated Community",
+      "Master Bedroom En-Suite",
+      "Backyard",
+      "8 Units in the Compound",
+      "24/7 Security",
+      "Ample Parking",
+      "Close to Public Transport",
+      "Close to Shopping Centers",
+    ],
   },
   {
     title: "Townhouse",
@@ -461,18 +526,66 @@ export const PropertiesData = [
     },
   },
   {
-    title: "4bd Mansion",
-    price: "KES 64,000,000",
-    location: "Lavington, Nairobi",
-    image: [property5],
+    title: "Westlands 2 and 3 Bedroom Modernized Apartments for Sale",
+    price: "From Kes 18.88 Million",
+    location: "Westlands, Nairobi",
+    image: [
+      westie23bd,
+      westie23bd2,
+      westie23bd3,
+      westie23bd4,
+      westie23bd5,
+      westie23bd6,
+      westie23bd7,
+      westie23bd8,
+      westie23bd9,
+    ],
     status: "For Sale",
-    badge: saleBadge,
+    badge: saleBadge, // Or any other status like 'Sold', 'Pending', etc.
     features: {
-      bedrooms: 4,
-      bathrooms: 6,
-      size: "8000 sqft",
-      parking: "5 spaces",
+      bedrooms: "2-3",
+      bathrooms: "2-3",
+      dsq: "Optional",
+      size: "118 sqm – 203 sqm",
+      parking: "Ample parking space",
+      balconies: "Yes",
+      elevator: "High-speed lifts",
+      garden: "Yes",
     },
+    availability: "Available for Viewing – Occupation from January 2025",
+    amenities: [
+      "CCTV and Video intercom systems",
+      "Conference Areas/Business Lounge",
+      "Fully Equipped Gym",
+      "Steam and Sauna",
+      "Infinity Pool",
+      "Backup Generator",
+      "Children’s Play Area",
+      "High-speed lifts",
+      "Solar Water Heating",
+      "Borehole and Underground Water Storage",
+      "Public Laundry",
+      "Flexible Payment Options",
+      " paymentDetails: deposit: 25% deposit, beforeAgreement: 35% before or upon signing the sale agreement, balance: Remaining balance over the construction period",
+      "Administration Office",
+      "Backup Generator",
+      "Balcony",
+      "Borehole",
+      "CCTV",
+      "Electric Fence",
+      "Elevator/Lift",
+      "En Suite",
+      "Garden",
+      "Gym",
+      "Internet Enabled",
+      "Kids Play Area",
+      "Parking",
+      "Perimeter Wall",
+      "Security System",
+      "Swimming Pool",
+      "Walk In Closet",
+      "Wheelchair Access",
+    ],
   },
   {
     title: "Kilimani 2 Bedroom Apartments for Sale",
