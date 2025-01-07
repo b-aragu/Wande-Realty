@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import { useDropzone } from "react-dropzone";
@@ -8,6 +8,8 @@ import {
 } from "../assets/assets";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Testimonials = () => {
   const loadTestimonials = () => {
@@ -131,10 +133,11 @@ const Testimonials = () => {
               className="max-w-[340px] border shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow"
             >
               <div className="relative w-24 h-24 mx-auto mb-4 overflow-hidden border-4 border-gray-300 rounded-full shadow-lg">
-                <img
+                <LazyLoadImage
                   className="object-cover w-full h-full"
                   src={testimonial.image}
                   alt={testimonial.alt}
+                  effect="blur"
                 />
               </div>
 
@@ -144,11 +147,12 @@ const Testimonials = () => {
               <p className="mb-4 text-sm text-gray-500">{testimonial.title}</p>
               <div className="flex justify-center gap-1 mb-4 text-red-500">
                 {Array.from({ length: testimonial.rating }, (_, index) => (
-                  <img
+                  <LazyLoadImage
                     className="w-4 h-4"
                     key={index}
                     src={assets.star}
                     alt="star"
+                    effect="blur"
                   />
                 ))}
               </div>

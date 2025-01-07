@@ -1,5 +1,7 @@
 import { assets } from "../assets/assets";
 import { motion } from "framer-motion";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const About = () => {
   return (
@@ -27,11 +29,13 @@ const About = () => {
       <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
         {/* Service 1: Buy a Home */}
         <div className="relative flex flex-col items-center p-6 text-center transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl group">
-          <img
+          <LazyLoadImage
             src={assets.service1}
             alt="Buy a Home"
             className="w-20 h-20 mb-4 rounded-full"
+            effect="blur"
           />
+
           <h3 className="text-xl font-semibold text-gray-800">Buy a Home</h3>
           <p className="mt-4 text-gray-600">
             Discover thousands of homes for sale tailored to match your
@@ -50,9 +54,10 @@ const About = () => {
 
         {/* Service 2: Rent a Home */}
         <div className="relative flex flex-col items-center p-6 text-center transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl group">
-          <img
+          <LazyLoadImage
             src={assets.service2}
             alt="Rent a Home"
+            effect="blur"
             className="w-20 h-20 mb-4 rounded-full"
           />
           <h3 className="text-xl font-semibold text-gray-800">Rent a Home</h3>
@@ -73,8 +78,9 @@ const About = () => {
 
         {/* Service 3: Sell a Home */}
         <div className="relative flex flex-col items-center p-6 text-center transition duration-300 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl group">
-          <img
+          <LazyLoadImage
             src={assets.service3}
+            effect="blur"
             alt="Sell or Rent Your Home with Wande Realty"
             className="w-20 h-20 mb-4 rounded-full"
           />

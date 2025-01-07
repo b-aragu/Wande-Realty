@@ -16,6 +16,8 @@ import {
   WhatsappIcon,
 } from "react-share";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Properties = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -194,9 +196,10 @@ const Properties = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full p-2 text-gray-700 bg-gray-200 rounded focus:outline-none"
           />
-          <img
+          <LazyLoadImage
             src={assets.searchIcon}
             alt="Search"
+            effect="blur"
             className="cursor-pointer w-7"
           />
         </form>
@@ -206,14 +209,24 @@ const Properties = () => {
             className="p-3 mr-2 transition bg-gray-200 rounded-full hover:bg-gray-300"
             aria-label="previous project"
           >
-            <img src={assets.leftArrow} alt="Previous" className="w-6 h-6" />
+            <LazyLoadImage
+              src={assets.leftArrow}
+              alt="Previous"
+              effect="blur"
+              className="w-6 h-6"
+            />
           </button>
           <button
             onClick={nextProject}
             className="p-3 transition bg-gray-200 rounded-full hover:bg-gray-300"
             aria-label="next project"
           >
-            <img src={assets.rightArrow} alt="Next" className="w-6 h-6" />
+            <LazyLoadImage
+              src={assets.rightArrow}
+              alt="Next"
+              effect="blur"
+              className="w-6 h-6"
+            />
           </button>
         </div>
       </div>
@@ -227,6 +240,9 @@ const Properties = () => {
           style={{
             transform: getCardTransform(),
             width: `${filteredProperties.length * (100 / cardsToShow)}%`,
+            minWidth: "140%",
+            paddingLeft: "20px",
+            gap: "20px",
           }}
         >
           {filteredProperties.map((property, index) => (
@@ -247,10 +263,11 @@ const Properties = () => {
                 />
                 {property.badge && (
                   <div className="absolute top-4 left-4">
-                    <img
+                    <LazyLoadImage
                       src={property.badge}
                       alt={property.status || "Badge"}
                       className="w-12 h-12"
+                      effect="blur"
                     />
                   </div>
                 )}
@@ -312,9 +329,10 @@ const Properties = () => {
                           onClick={handleInstagramRedirect}
                           className="relative cursor-pointer"
                         >
-                          <img
+                          <LazyLoadImage
                             src={assets.instagramIcon} // Instagram icon image imported from assets
                             alt="Instagram"
+                            effect="blur"
                             className="w-8 h-8"
                           />
                         </div>
