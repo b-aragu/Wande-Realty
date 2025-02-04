@@ -4,7 +4,7 @@ import aboutBanner2 from "./about-banner-2.jpg";
 import property6 from "./property6.png";
 import property7 from "./property6.png";
 import property8 from "./property8.jpg";
-import favicon from "./favicon.svg";
+import favicon from "./favicon1.svg";
 import property5 from "./property-5.png";
 import logo from "./logo.png";
 import property1 from "./property-1.jpg";
@@ -137,25 +137,25 @@ import lavi4bdtownhouse6 from "./lavi4bdtownhouse6.webp";
 import lavi4bdtownhouse7 from "./lavi4bdtownhouse7.webp";
 import lavi4bdtownhouse8 from "./lavi4bdtownhouse8.webp";
 import lavi4bdtownhouse9 from "./lavi4bdtownhouse9.webp";
-import kilimani4bddsq from "./kilimani4bddsqrent.webp";
-import kilimani4bddsq1 from "./kilimani4bddsqrent1.webp";
-import kilimani4bddsq2 from "./kilimani4bddsqrent2.webp";
-import kilimani4bddsq3 from "./kilimani4bddsqrent3.webp";
-import kilimani4bddsq4 from "./kilimani4bddsqrent4.webp";
-import kilimani4bddsq5 from "./kilimani4bddsqrent5.webp";
-import kilimani4bddsq6 from "./kilimani4bddsqrent6.webp";
-import kilimani4bddsq7 from "./kilimani4bddsqrent7.webp";
+//import kilimani4bddsq from "./kilimani4bddsqrent.webp";
+//import kilimani4bddsq1 from "./kilimani4bddsqrent1.webp";
+//import kilimani4bddsq2 from "./kilimani4bddsqrent2.webp";
+//import kilimani4bddsq3 from "./kilimani4bddsqrent3.webp";
+//import kilimani4bddsq4 from "./kilimani4bddsqrent4.webp";
+//import kilimani4bddsq5 from "./kilimani4bddsqrent5.webp";
+//import kilimani4bddsq6 from "./kilimani4bddsqrent6.webp";
+//import kilimani4bddsq7 from "./kilimani4bddsqrent7.webp";
 
 // Create an object to export
 export const assets = {
   aboutBanner1,
-  kilimani4bddsq,
-  kilimani4bddsq2,
-  kilimani4bddsq3,
-  kilimani4bddsq4,
-  kilimani4bddsq5,
-  kilimani4bddsq6,
-  kilimani4bddsq7,
+  //kilimani4bddsq,
+  //kilimani4bddsq2,
+  //kilimani4bddsq3,
+  //kilimani4bddsq4,
+  //kilimani4bddsq5,
+  //kilimani4bddsq6,
+  //kilimani4bddsq7,
   lavi4bdtownhouse,
   lavi4bdtownhouse1,
   lavi4bdtownhouse2,
@@ -465,7 +465,7 @@ export const PropertiesData = [
       "European Beko fittings",
     ],
   },
-  {
+  /*{
     title: "Kilimani 4 Bedroom Townhouse plus DSQ for Rent",
     price: "KES 180K per month",
     location: "Kilimani, Nairobi",
@@ -510,7 +510,7 @@ export const PropertiesData = [
       "Close to Public Transport",
       "Close to Shopping Centers",
     ],
-  },
+  },*/
   {
     title: "Townhouse",
     price: "KES 60,000,000",

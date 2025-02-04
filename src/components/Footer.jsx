@@ -12,9 +12,9 @@ const Footer = () => {
           <img
             src={assets.favicon}
             alt="Wande Realty logo"
-            className="h-12 w-auto" // Make sure the logo has a size set
+            className="h-50 md:h-50 w-auto -mt-[190px] md:-mt-[230px] -ml-[80px] md:-ml-[100px]" // Make sure the logo has a size set
           />
-          <p className="mt-4 text-gray-400">
+          <p className="-mt-[170px] md:-mt-[200px] text-gray-400">
             At Wande Realty, we connect clients to their dream properties.
             Whether you're looking to rent, buy, or sell, our expert team is
             here to help. Your satisfaction is our priority.
